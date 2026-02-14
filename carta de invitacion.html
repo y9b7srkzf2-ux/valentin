@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Lily ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #8B0000, #00c2a8, #000000);
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+/* BRILLO */
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite alternate;
+}
+@keyframes twinkle {
+    from {opacity: 0.2;}
+    to {opacity: 1;}
+}
+
+/* SOBRE MEJORADO */
+.envelope {
+    width: 340px;
+    height: 230px;
+    background: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 2px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8B0000;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    perspective: 1000px;
+}
+
+/* Línea central del sobre */
+.envelope::after {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 2px;
+    background: #ddd;
+    bottom: 60px;
+}
+
+/* Tapa */
+.flap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 115px;
+    background: #f2f2f2;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform 1.5s ease;
+    border-bottom: 2px solid #ddd;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+/* CARTA */
+.card {
+    display: none;
+    background: rgba(0,0,0,0.95);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px #00ffe1;
+    max-width: 550px;
+    text-align: center;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.invitation {
+    margin-top: 20px;
+    padding: 15px;
+    background: #00c2a8;
+    color: black;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #ff004c;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* PREGUNTA FINAL */
+.finalMessage {
+    display: none;
+    position: absolute;
+    text-align: center;
+}
+
+.finalMessage h2 {
+    font-size: 30px;
+    color: #00ffe1;
+    text-shadow: 0 0 15px #00ffe1;
+}
+
+/* MENSAJE ETERNO */
+.eternalMessage {
+    display: none;
+    position: absolute;
+    text-align: center;
+    padding: 30px;
+}
+
+.eternalMessage h3 {
+    font-size: 26px;
+    text-shadow: 0 0 20px #ff004c;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-piano-110624.mp3" type="audio/mpeg">
+</audio>
+
+<div class="envelope" id="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    💌 Para Lily ❤️
+</div>
+
+<div class="card" id="card">
+    <h1>Lily, Feliz San Valentín ❤️</h1>
+    <p>
+    Mi hermosa Lily,<br><br>
+    Desde que llegaste a mi vida, todo tiene más luz y significado.  
+    Eres mi alegría diaria, mi paz, mi inspiración y mi amor eterno.  
+    Cada sonrisa tuya ilumina mi mundo, y cada abrazo tuyo es mi hogar.  
+    <br><br>
+    Gracias por existir y por hacerme el hombre más feliz del mundo.  
+    Te amo infinitamente.
+    </p>
+
+    <div class="invitation">
+        Invitación para una cena romántica con tu príncipe 💕<br>
+        Hora: 6:00 PM
+    </div>
+
+    <button onclick="showQuestion()">Tengo algo más para ti… ❤️</button>
+
+    <p style="margin-top:20px; font-style:italic;">
+        Con todo mi amor,<br>
+        <strong>Tu príncipe 👑</strong>
+    </p>
+</div>
+
+<div class="finalMessage" id="finalMessage">
+    <h2>💍 Lily... ¿Aceptas seguir siendo mi San Valentín por toda la vida? ❤️</h2>
+    <button onclick="showEternal()">Sí, mi príncipe ❤️</button>
+</div>
+
+<div class="eternalMessage" id="eternalMessage">
+    <h3>
+    Ven, abrázame fuerte, toma mi mano y sintamos este amor infinito en nuestros corazones.<br><br>
+    Te amo ❤️
+    </h3>
+</div>
+
+<script>
+function openEnvelope() {
+    const envelope = document.getElementById("envelope");
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+        envelope.style.display = "none";
+        document.getElementById("card").style.display = "block";
+        document.getElementById("bgMusic").play();
+    }, 1500);
+}
+
+function showQuestion() {
+    document.getElementById("card").style.display = "none";
+    document.getElementById("finalMessage").style.display = "block";
+}
+
+function showEternal() {
+    document.getElementById("finalMessage").style.display = "none";
+    document.getElementById("eternalMessage").style.display = "block";
+}
+
+/* Brillos */
+for (let i = 0; i < 80; i++) {
+    let sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(sparkle);
+}
+</script>
+
+</body>
+</html>
